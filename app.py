@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import numpy as np
-from model import LDCE_Net
+from ldce_model import LDCE_Net
 
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -40,13 +40,13 @@ st.markdown("Upload an ultrasound image of the liver to classify fibrosis stage.
 
 # Display training accuracy curve if available
 if os.path.exists("plots/accuracy_curve.png"):
-    st.image("plots/accuracy_curve.png", caption="Model Training Accuracy Curve", use_column_width=True)
+    st.image("plots/accuracy_curve.png", caption="Model Training Accuracy Curve", use_container_width=True)
 
 uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert('RGB')
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    st.image(image, caption='Uploaded Image', use_container_width=True)
 
     if st.button("Classify"):
         with st.spinner("Classifying..."):
