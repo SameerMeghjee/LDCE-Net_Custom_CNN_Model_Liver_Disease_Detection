@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import numpy as np
-from ldce_model import LDCE_Net
+from model import LDCE_Net
 
 import streamlit as st
 import matplotlib.pyplot as plt
