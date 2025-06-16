@@ -35,7 +35,7 @@ def preprocess_image(image):
     image = transform(image)
     return image.unsqueeze(0)  # Add batch dimension
 
-st.title("🧠 Liver Disease Detectiom - LDCE-Net")
+st.title("🧠 Liver Disease Detection - LDCE-Net")
 st.markdown("Upload an ultrasound image of the liver to classify disease.")
 
 uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
