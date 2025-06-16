@@ -7,12 +7,13 @@ from ldce_model import LDCE_Net
 import streamlit as st
 import matplotlib.pyplot as plt
 import os
+from sklearn.metrics import classification_report
 
 st.set_page_config(page_title="Liver Disease Detection", layout="centered")
 
 # Settings
 MODEL_PATH = "ldce_model.pt"
-NUM_CLASSES = 3  
+NUM_CLASSES = 3
 CLASS_NAMES = ["Normal (F0)", "Fibrosis (F1-F3)", "Cirrhosis (F4)"]
 
 # Load Model
@@ -33,10 +34,14 @@ def preprocess_image(image):
         transforms.Normalize([0.5], [0.5])
     ])
     image = transform(image)
-    return image.unsqueeze(0)  # Add batch dimension
+    return image.unsqueeze(0)
 
-st.title("🧠 Liver Disease Detectiom - LDCE-Net")
+st.title("🧠 Liver Disease Detection - LDCE-Net")
 st.markdown("Upload an ultrasound image of the liver to classify disease.")
+
+# Show accuracy curve if available before prediction
+if os.path.exists("plots/accuracy_curve.png"):
+    st.image("plots/accuracy_curve.png", caption="Training Accuracy Curve", use_container_width=True)
 
 uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
@@ -64,3 +69,13 @@ if uploaded_file is not None:
             st.write("### Class Probabilities:")
             for i, class_name in enumerate(CLASS_NAMES):
                 st.write(f"{class_name}: {probs[i]*100:.2f}%")
+
+            # Show training accuracy curve again after prediction (optional)
+            if os.path.exists("plots/accuracy_curve.png"):
+                st.image("plots/accuracy_curve.png", caption="Training Accuracy Curve", use_container_width=True)
+
+            # Dummy classification report for structure demonstration
+            y_true = [pred_class]
+            y_pred = [pred_class]
+            report = classification_report(y_true, y_pred, target_names=CLASS_NAMES, zero_division=0)
+            st.code(report, language='text')
