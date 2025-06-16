@@ -10,7 +10,7 @@ import seaborn as sns
 import numpy as np
 import argparse
 import os
-from model import LDCE_Net
+from ldce_model import LDCE_Net
 
 def main():
     # CONFIG
