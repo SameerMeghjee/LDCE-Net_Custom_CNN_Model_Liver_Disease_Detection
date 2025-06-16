@@ -1,4 +1,4 @@
-# LDCE-Net: Liver Fibrosis Classification from Ultrasound Images
+# Liver Disease Detection With Custom CNN Model Using Ultrasound Images
 
 ## 🧠 Overview
 LDCE-Net is a custom, lightweight deep learning model designed from scratch to classify liver fibrosis stages (Normal, Fibrosis, Cirrhosis) using grayscale ultrasound images. It is optimized to run on CPU-only systems and designed specifically for use in real-time clinical environments.
@@ -14,8 +14,8 @@ LDCE-Net is a custom, lightweight deep learning model designed from scratch to c
 ## 📂 Project Structure
 ```
 LDCE-Net/
-├── ldce_net_model.py         # Model definition (LDCE-Net with depthwise + attention)
-├── train.py                  # Full training pipeline with plots and metrics
+├── ldce_model.py             # Model definition (LDCE-Net with depthwise + attention)
+├── training.py                  # Full training pipeline with plots and metrics
 ├── app.py                    # Streamlit GUI for image classification
 ├── ldce_model.pt             # Trained model weights
 ├── plots/                    # Accuracy, loss, and confusion matrix plots
@@ -40,7 +40,7 @@ Liver Ultrasounds/
 
 ## 🧪 Training the Model
 ```bash
-python train.py
+python training.py
 ```
 This will:
 - Train the model with stratified sampling
@@ -51,7 +51,7 @@ This will:
 
 ## 📊 Sample Training Metrics
 - **Best validation accuracy**: ~87.6%
-- **Train accuracy**: steadily rises to ~85%
+- **Train accuracy**: steadily rises to ~89%
 - **No overfitting**: due to dropout + augmentations
 
 ---
