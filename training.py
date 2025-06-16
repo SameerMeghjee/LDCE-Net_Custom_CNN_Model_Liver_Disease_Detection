@@ -4,7 +4,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.metrics import confusion_matrix, f1_score, accuracy_score
+from sklearn.metrics import confusion_matrix, f1_score, accuracy_score, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -147,6 +147,9 @@ def main():
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.savefig("plots/confusion_matrix.png")
+
+    print("\n📊 Classification Report:")
+    print(classification_report(y_true, y_pred, target_names=datasets.ImageFolder(DATA_DIR).classes, zero_division=0))
 
 if __name__ == '__main__':
     import multiprocessing
