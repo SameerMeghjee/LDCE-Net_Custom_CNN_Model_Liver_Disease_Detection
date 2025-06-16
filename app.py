@@ -8,7 +8,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import os
 
-st.set_page_config(page_title="Liver Fibrosis Classifier", layout="centered")
+st.set_page_config(page_title="Liver Disease Detection", layout="centered")
 
 # Settings
 MODEL_PATH = "ldce_model.pt"
@@ -35,12 +35,8 @@ def preprocess_image(image):
     image = transform(image)
     return image.unsqueeze(0)  # Add batch dimension
 
-st.title("🧠 Liver Fibrosis Classification - LDCE-Net")
-st.markdown("Upload an ultrasound image of the liver to classify fibrosis stage.")
-
-# Display training accuracy curve if available
-if os.path.exists("plots/accuracy_curve.png"):
-    st.image("plots/accuracy_curve.png", caption="Model Training Accuracy Curve", use_container_width=True)
+st.title("🧠 Liver Disease Detectiom - LDCE-Net")
+st.markdown("Upload an ultrasound image of the liver to classify disease.")
 
 uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
